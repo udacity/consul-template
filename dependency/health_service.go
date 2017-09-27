@@ -11,7 +11,6 @@ import (
 	"sync"
 
 	"github.com/hashicorp/consul/api"
-	"github.com/hashicorp/go-multierror"
 )
 
 func init() {
@@ -132,6 +131,12 @@ func (d *HealthServices) Fetch(clients *ClientSet, opts *QueryOptions) (interfac
 			address = entry.Service.Address
 		} else {
 			address = entry.Node.Address
+		}
+
+		// NOTE: Truncate the HealthCheck output since we don't need it for the templates
+		// and the contents can be large (e.g. full HTML document).
+		for _, chk := range entry.Checks {
+			chk.Output = ""
 		}
 
 		services = append(services, &HealthService{
