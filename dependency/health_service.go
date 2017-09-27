@@ -11,6 +11,7 @@ import (
 	"sync"
 
 	"github.com/hashicorp/consul/api"
+	multierror "github.com/hashicorp/go-multierror"
 )
 
 func init() {

@@ -13,7 +13,7 @@ import (
 	"strings"
 	"time"
 
-	dep "github.com/hashicorp/consul-template/dependency"
+	dep "github.com/udacity/consul-template/dependency"
 	yaml "gopkg.in/yaml.v2"
 )
 

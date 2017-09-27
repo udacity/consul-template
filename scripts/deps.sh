@@ -32,12 +32,12 @@ trap cleanup EXIT
 export GOPATH="${tmpdir}"
 export PATH="${tmpdir}/bin:$PATH"
 
-mkdir -p "${tmpdir}/src/github.com/hashicorp"
-pushd "${tmpdir}/src/github.com/hashicorp" &>/dev/null
+mkdir -p "${tmpdir}/src/github.com/udacity"
+pushd "${tmpdir}/src/github.com/udacity" &>/dev/null
 
 echo "--> Copying ${NAME}..."
-cp -R "$DIR" "${tmpdir}/src/github.com/hashicorp/${NAME}"
-pushd "${tmpdir}/src/github.com/hashicorp/${NAME}" &>/dev/null
+cp -R "$DIR" "${tmpdir}/src/github.com/udacity/${NAME}"
+pushd "${tmpdir}/src/github.com/udacity/${NAME}" &>/dev/null
 rm -rf vendor/
 
 echo "--> Installing dependency manager..."
@@ -51,7 +51,7 @@ echo "--> Vendoring..."
 govendor add +external
 
 echo "--> Moving into place..."
-vpath="${tmpdir}/src/github.com/hashicorp/${NAME}/vendor"
+vpath="${tmpdir}/src/github.com/udacity/${NAME}/vendor"
 popd &>/dev/null
 popd &>/dev/null
 rm -rf vendor/

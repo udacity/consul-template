@@ -28,8 +28,8 @@ if [ -z $NOBUILD ]; then
   echo "==> Building binaries in container..."
   docker run \
     --rm \
-    --workdir="/go/src/github.com/hashicorp/${NAME}" \
-    --volume="$(pwd):/go/src/github.com/hashicorp/${NAME}" \
+    --workdir="/go/src/github.com/udacity/${NAME}" \
+    --volume="$(pwd):/go/src/github.com/udacity/${NAME}" \
     golang:1.6.2 /bin/sh -c "make bootstrap && make bin"
 fi
 

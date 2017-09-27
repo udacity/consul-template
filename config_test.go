@@ -10,8 +10,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hashicorp/consul-template/test"
-	"github.com/hashicorp/consul-template/watch"
+	"github.com/udacity/consul-template/test"
+	"github.com/udacity/consul-template/watch"
 )
 
 func testConfig(contents string, t *testing.T) *Config {

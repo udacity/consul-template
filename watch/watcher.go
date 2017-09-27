@@ -6,7 +6,7 @@ import (
 	"sync"
 	"time"
 
-	dep "github.com/hashicorp/consul-template/dependency"
+	dep "github.com/udacity/consul-template/dependency"
 )
 
 // RetryFunc is a function that defines the retry for a given watcher. The

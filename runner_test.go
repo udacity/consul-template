@@ -11,9 +11,9 @@ import (
 	"testing"
 	"time"
 
-	dep "github.com/hashicorp/consul-template/dependency"
-	"github.com/hashicorp/consul-template/test"
-	"github.com/hashicorp/consul-template/watch"
+	dep "github.com/udacity/consul-template/dependency"
+	"github.com/udacity/consul-template/test"
+	"github.com/udacity/consul-template/watch"
 	"github.com/hashicorp/consul/testutil"
 	"github.com/hashicorp/go-gatedio"
 )

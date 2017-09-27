@@ -7,7 +7,7 @@ import (
 	"testing"
 	"time"
 
-	dep "github.com/hashicorp/consul-template/dependency"
+	dep "github.com/udacity/consul-template/dependency"
 )
 
 var defaultWatcherConfig = &WatcherConfig{

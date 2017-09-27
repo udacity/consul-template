@@ -12,8 +12,8 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/hashicorp/consul-template/logging"
-	"github.com/hashicorp/consul-template/watch"
+	"github.com/udacity/consul-template/logging"
+	"github.com/udacity/consul-template/watch"
 )
 
 // Exit codes are int values that represent an exit code for a particular error.

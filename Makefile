@@ -22,14 +22,14 @@ dist:
 test: generate
 	@echo "==> Running tests..."
 	@go list $(TEST) \
-		| grep -v "github.com/hashicorp/${NAME}/vendor" \
+		| grep -v "github.com/udacity/${NAME}/vendor" \
 		| xargs -n1 go test -timeout=60s -parallel=10 ${TESTARGS}
 
 # testrace runs the race checker
 testrace: generate
 	@echo "==> Running tests (race)..."
 	@go list $(TEST) \
-		| grep -v "github.com/hashicorp/${NAME}/vendor" \
+		| grep -v "github.com/udacity/${NAME}/vendor" \
 		| xargs -n1 go test -timeout=60s -race ${TESTARGS}
 
 # updatedeps installs all the dependencies needed to run and build.
@@ -41,7 +41,7 @@ generate:
 	@echo "==> Generating..."
 	@find . -type f -name '.DS_Store' -delete
 	@go list ./... \
-		| grep -v "github.com/hashicorp/${NAME}/vendor" \
+		| grep -v "github.com/udacity/${NAME}/vendor" \
 		| xargs -n1 go generate
 
 # bootstrap installs the necessary go tools for development/build.
