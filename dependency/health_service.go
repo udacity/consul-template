@@ -156,6 +156,12 @@ func (d *HealthServiceQuery) Fetch(clients *ClientSet, opts *QueryOptions) (inte
 			address = entry.Node.Address
 		}
 
+		// NOTE: Truncate the HealthCheck output since we don't need it for the templates
+		// and the contents can be large (e.g. full HTML document).
+		for _, chk := range entry.Checks {
+			chk.Output = ""
+		}
+
 		list = append(list, &HealthService{
 			Node:                entry.Node.Node,
 			NodeID:              entry.Node.ID,
