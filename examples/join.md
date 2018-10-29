@@ -23,5 +23,5 @@ Here is an example of what the file may render:
 export MEMCACHED_SERVERS="1.2.3.4,5.6.7.8"
 ```
 
-- For a list of functions, please see the [Consul Template README](https://github.com/hashicorp/consul-template)
+- For a list of functions, please see the [Consul Template README](https://github.com/udacity/consul-template)
 - For template syntax, please see [the golang text/template documentation](https://golang.org/pkg/text/template/)

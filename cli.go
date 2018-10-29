@@ -11,11 +11,11 @@ import (
 	"sync"
 	"time"
 
-	"github.com/hashicorp/consul-template/config"
-	"github.com/hashicorp/consul-template/logging"
-	"github.com/hashicorp/consul-template/manager"
-	"github.com/hashicorp/consul-template/signals"
-	"github.com/hashicorp/consul-template/version"
+	"github.com/udacity/consul-template/config"
+	"github.com/udacity/consul-template/logging"
+	"github.com/udacity/consul-template/manager"
+	"github.com/udacity/consul-template/signals"
+	"github.com/udacity/consul-template/version"
 )
 
 // Exit codes are int values that represent an exit code for a particular error.

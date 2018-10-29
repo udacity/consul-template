@@ -10,11 +10,11 @@ import (
 	"sync"
 	"time"
 
-	"github.com/hashicorp/consul-template/child"
-	"github.com/hashicorp/consul-template/config"
-	dep "github.com/hashicorp/consul-template/dependency"
-	"github.com/hashicorp/consul-template/template"
-	"github.com/hashicorp/consul-template/watch"
+	"github.com/udacity/consul-template/child"
+	"github.com/udacity/consul-template/config"
+	dep "github.com/udacity/consul-template/dependency"
+	"github.com/udacity/consul-template/template"
+	"github.com/udacity/consul-template/watch"
 	"github.com/hashicorp/go-multierror"
 	"github.com/mattn/go-shellwords"
 	"github.com/pkg/errors"
@@ -333,7 +333,7 @@ func (r *Runner) Start() {
 			// on the watcher and then reports when it is done receiving new data
 			// which the parent select listens for.
 			//
-			// Please see https://github.com/hashicorp/consul-template/issues/168 for
+			// Please see https://github.com/udacity/consul-template/issues/168 for
 			// more information about this optimization and the entire backstory.
 			for {
 				select {
@@ -473,7 +473,7 @@ func (r *Runner) Receive(d dep.Dependency, data interface{}) {
 	// Accepting this dependency would introduce stale data into the brain, and
 	// that is simply unacceptable. In fact, it is a fun little bug:
 	//
-	//     https://github.com/hashicorp/consul-template/issues/198
+	//     https://github.com/udacity/consul-template/issues/198
 	//
 	// and by "little" bug, I mean really big bug.
 	if _, ok := r.dependencies[d.String()]; ok {

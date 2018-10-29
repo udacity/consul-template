@@ -44,5 +44,5 @@ listen http-in
     server nyc3-worker-1 104.131.86.92:80
 ```
 
-- For a list of functions, please see the [Consul Template README](https://github.com/hashicorp/consul-template)
+- For a list of functions, please see the [Consul Template README](https://github.com/udacity/consul-template)
 - For template syntax, please see [the golang text/template documentation](https://golang.org/pkg/text/template/)

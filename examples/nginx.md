@@ -68,5 +68,5 @@ server {
 }
 ```
 
-- For a list of functions, please see the [Consul Template README](https://github.com/hashicorp/consul-template)
+- For a list of functions, please see the [Consul Template README](https://github.com/udacity/consul-template)
 - For template syntax, please see [the golang text/template documentation](https://golang.org/pkg/text/template/)

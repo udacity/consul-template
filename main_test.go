@@ -7,7 +7,7 @@ import (
 	"testing"
 	"fmt"
 
-	dep "github.com/hashicorp/consul-template/dependency"
+	dep "github.com/udacity/consul-template/dependency"
 	"github.com/hashicorp/consul/testutil"
 )
 

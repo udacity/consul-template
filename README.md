@@ -1,7 +1,7 @@
 # Consul Template
 
 [![Build Status](http://img.shields.io/travis/hashicorp/consul-template.svg?style=flat-square)](https://travis-ci.org/hashicorp/consul-template)
-[![Go Documentation](http://img.shields.io/badge/go-documentation-blue.svg?style=flat-square)](https://godoc.org/github.com/hashicorp/consul-template)
+[![Go Documentation](http://img.shields.io/badge/go-documentation-blue.svg?style=flat-square)](https://godoc.org/github.com/udacity/consul-template)
 
 This project provides a convenient way to populate values from [Consul][consul]
 into the file system using the `consul-template` daemon.
@@ -16,7 +16,7 @@ this functionality might prove useful.
 
 **The documentation in this README corresponds to the master branch of Consul Template. It may contain unreleased features or different APIs than the most recently released version.**
 
-**Please see the [Git tag](https://github.com/hashicorp/consul-template/releases) that corresponds to your version of Consul Template for the proper documentation.**
+**Please see the [Git tag](https://github.com/udacity/consul-template/releases) that corresponds to your version of Consul Template for the proper documentation.**
 
 ---
 
@@ -2142,7 +2142,7 @@ Docker engine:
 Clone the repository:
 
 ```shell
-$ git clone https://github.com/hashicorp/consul-template.git
+$ git clone https://github.com/udacity/consul-template.git
 ```
 
 To compile the `consul-template` binary for your local machine:
@@ -2174,7 +2174,7 @@ go test ./... -run SomeTestFunction_name
 ```
 
 [consul]: https://www.consul.io "Consul by HashiCorp"
-[examples]: (https://github.com/hashicorp/consul-template/tree/master/examples) "Consul Template Examples"
+[examples]: (https://github.com/udacity/consul-template/tree/master/examples) "Consul Template Examples"
 [hcl]: https://github.com/hashicorp/hcl "HashiCorp Configuration Language (hcl)"
 [releases]: https://releases.hashicorp.com/consul-template "Consul Template Releases"
 [text-template]: https://golang.org/pkg/text/template/ "Go's text/template package"
