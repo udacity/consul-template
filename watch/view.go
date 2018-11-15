@@ -42,6 +42,9 @@ type View struct {
 	// should be attempted.
 	retryFunc RetryFunc
 
+	// rateLimitFunc is a function that decide when to retry on success.
+	rateLimitFunc RateLimitFunc
+
 	// stopCh is used to stop polling on this View
 	stopCh chan struct{}
 
@@ -71,6 +74,10 @@ type NewViewInput struct {
 	// upstream errors.
 	RetryFunc RetryFunc
 
+	// Rate limit allow to limit the number of successfull calls to avoid
+	// saturating the bandwidth
+	RateLimitFunc RateLimitFunc
+
 	// VaultGrace is the grace period between a lease and the max TTL for which
 	// Consul Template will generate a new secret instead of renewing an existing
 	// one.
@@ -80,13 +87,14 @@ type NewViewInput struct {
 // NewView constructs a new view with the given inputs.
 func NewView(i *NewViewInput) (*View, error) {
 	return &View{
-		dependency: i.Dependency,
-		clients:    i.Clients,
-		maxStale:   i.MaxStale,
-		once:       i.Once,
-		retryFunc:  i.RetryFunc,
-		stopCh:     make(chan struct{}, 1),
-		vaultGrace: i.VaultGrace,
+		dependency:    i.Dependency,
+		clients:       i.Clients,
+		maxStale:      i.MaxStale,
+		once:          i.Once,
+		rateLimitFunc: i.RateLimitFunc,
+		retryFunc:     i.RetryFunc,
+		stopCh:        make(chan struct{}, 1),
+		vaultGrace:    i.VaultGrace,
 	}, nil
 }
 
@@ -117,7 +125,6 @@ func (v *View) DataAndLastIndex() (interface{}, uint64) {
 // function is in the middle of a blocking query.
 func (v *View) poll(viewCh chan<- *View, errCh chan<- error) {
 	var retries int
-
 	for {
 		doneCh := make(chan struct{}, 1)
 		successCh := make(chan struct{}, 1)
@@ -143,6 +150,7 @@ func (v *View) poll(viewCh chan<- *View, errCh chan<- error) {
 			if v.once {
 				return
 			}
+
 		case <-successCh:
 			// We successfully received a non-error response from the server. This
 			// does not mean we have data (that's dataCh's job), but rather this
@@ -206,6 +214,7 @@ func (v *View) fetch(doneCh, successCh chan<- struct{}, errCh chan<- error) {
 			return
 		default:
 		}
+		start := time.Now()
 
 		data, rm, err := v.dependency.Fetch(v.clients, &dep.QueryOptions{
 			AllowStale: allowStale,
@@ -245,6 +254,15 @@ func (v *View) fetch(doneCh, successCh chan<- struct{}, errCh chan<- error) {
 
 		if v.maxStale != 0 {
 			allowStale = true
+		}
+
+		if v.rateLimitFunc != nil {
+			elapsed := time.Since(start)
+			wait, sleep := v.rateLimitFunc(elapsed)
+			if wait {
+				log.Printf("[TRACE] (view) %s %s elapsed, sleeping for %s", v.dependency, elapsed, sleep)
+				<-time.After(sleep)
+			}
 		}
 
 		if rm.LastIndex == v.lastIndex {
